@@ -12,6 +12,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 {
 	private boolean play = false;
 	private int score = 0;
+	private int previousScore =0;
 	
 	private int totalBricks = 48;
 	
@@ -56,6 +57,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 		g.setColor(Color.white);
 		g.setFont(new Font("serif",Font.BOLD, 25));
 		g.drawString(""+score, 590,30);
+
+		//dsplay previous Score
+		g.setFont(new Font("serif", Font.BOLD, 20));
+        g.drawString("Highest Score: " + previousScore, 10, 30);
 		
 		// the paddle
 		g.setColor(Color.green);
@@ -133,6 +138,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 				ballXdir = -1;
 				ballYdir = -2;
 				playerX = 310;
+				previousScore = score>previousScore?score:previousScore;
 				score = 0;
 				totalBricks = 21;
 				map = new MapGenerator(3, 7);
@@ -148,13 +154,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 	public void moveRight()
 	{
 		play = true;
-		playerX+=20;	
+		playerX+=30;	
 	}
 	
 	public void moveLeft()
 	{
 		play = true;
-		playerX-=20;	 	
+		playerX-=30;	 	
 	}
 	
 	public void actionPerformed(ActionEvent e) 
